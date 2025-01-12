@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Request
 
-from app.cart.repository import CartService
+
 from app.users.dependencies import get_current_user
 from app.users.models import Users
 

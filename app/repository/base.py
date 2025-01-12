@@ -32,38 +32,38 @@ class BaseRepository:
             query = insert(cls.model).values(**data)
             await session.execute(query)
             await session.commit()
-            
- 
-    @classmethod
-    async def delete(cls, id: int):
-        async with async_session_maker() as session:
-            query = delete(cls.model).where(cls.model.id == id)
-            await session.execute(query)
-            await session.commit()
-    
-    @classmethod
-    async def update(cls, id: int, **data):
-        async with async_session_maker() as session:
-            query = (
-                update(cls.model)
-                .where(cls.model.id == id)
-                .values(**data)
-            )
-            result = await session.execute(query)
-            await session.commit()
-            return result.rowcount
-    
-    @classmethod
-    async def partial_update(cls, id: int, **data):
-        async with async_session_maker() as session:
-            query = (
-                update(cls.model)
-                .where(cls.model.id == id)
-                .values(**{k: v for k, v in data.items() if hasattr(cls.model, k)})
-            )
-            result = await session.execute(query)
-            await session.commit()
-            return result.rowcount
+
+
+
+# Might NOT WORK
+    # @classmethod
+    # async def delete(cls, id: int):
+    #     async with async_session_maker() as session:
+    #         query = delete(cls.model).where(cls.model.id == id)
+    #         await session.execute(query)
+    #         await session.commit()
+    # @classmethod
+    # async def update(cls, id: int, **data):
+    #     async with async_session_maker() as session:
+    #         query = (
+    #             update(cls.model)
+    #             .where(cls.model.id == id)
+    #             .values(**data)
+    #         )
+    #         result = await session.execute(query)
+    #         await session.commit()
+    #         return result.rowcount
+    # @classmethod
+    # async def partial_update(cls, id: int, **data):
+    #     async with async_session_maker() as session:
+    #         query = (
+    #             update(cls.model)
+    #             .where(cls.model.id == id)
+    #             .values(**{k: v for k, v in data.items() if hasattr(cls.model, k)})
+    #         )
+    #         result = await session.execute(query)
+    #         await session.commit()
+    #         return result.rowcount
 
             
             

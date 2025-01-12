@@ -18,4 +18,6 @@ async def get_products():
     return await ProductRepository.find_all()
 
    
-
+@router.get("")
+async def get_products():
+    return await ProductRepository.find_one_or_none()

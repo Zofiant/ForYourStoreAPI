@@ -19,8 +19,7 @@ def verify_password(plain_password, hashed_password) -> bool:
 
 def create_access_token(data: dict,):
     to_encode = data.copy()
-  
-    expire = datetime.now(timezone.utc) + timedelta(minutes=30)
+    expire = datetime.now(timezone.utc) + timedelta(hours=24)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
@@ -28,6 +27,10 @@ def create_access_token(data: dict,):
 
 async def authenticate_user(email: EmailStr, password: str):
     user = await UserRepository.find_one_or_none(email = email)
-    if not user and not verify_password(password, user.password):
+    if not user:
+        print("None user")
+        return None
+    if not verify_password(password, user.password):
+        print("Wrong password")
         return None
     return user

@@ -26,4 +26,7 @@ async def login_user(response: Response,user_data: SUserAuth):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     access_token = create_access_token({"sub": user.user_id})
     response.set_cookie("login_access_token", access_token, httponly = True)
-    return access_token
+    return {"access_token":access_token }
+
+
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImV4cCI6MTczNjUyMjU0MX0.secoEkmKBkbW0EthLxvynuxk_-djDNqcYaM5ykc8ctI
