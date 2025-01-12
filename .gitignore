@@ -1,0 +1,7 @@
+.venv
+.env
+app/config.py
+docker-compose-local.yaml
+/shelf/
+/workspace.xml
+*.pyc
