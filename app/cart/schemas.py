@@ -1,12 +1,16 @@
 
 
-from pydantic import BaseModel
+from typing import Optional
+from pydantic import BaseModel, Field
 
-from app.cart.models import Cart_status
+from app.orders.models import Order_delivery
 
 class SCart(BaseModel):
     cart_id: int
     user_id:int
-    status:Cart_status
     total_price: int | None = None
 
+class SDelivery(BaseModel):
+    order_delivery: Order_delivery
+    address_courier: Optional[str] = Field(None, description="Address for courier delivery")
+    address_pickup: Optional[str] = Field(None, description="Address for pickup delivery")

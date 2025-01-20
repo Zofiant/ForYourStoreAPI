@@ -2,11 +2,16 @@ from pydantic import BaseModel
 
 
 class SProduct(BaseModel):
-    product_id : int 
     name : str
     price : int
-    stars : int | None = None
+    quantity : int
+    ingredients : str 
     nutrition : str 
     description : str | None = None
-    ingredients : str 
+    stars : int | None = None
     image_id : int | None = None
+
+
+class SProductAdd(BaseModel):
+    product_id: int
+    quantity: int

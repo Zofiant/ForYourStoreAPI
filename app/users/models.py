@@ -1,12 +1,13 @@
 import enum
 from sqlalchemy import Column, Integer, String, JSON, Enum
+from sqlalchemy.dialects.postgresql import ENUM
 
 from app.database import Base
     
-class User_status(enum.Enum):
-    user=1
-    seller=2
-    admin=3
+class User_role(enum.Enum):
+    user= "User"
+    seller= "Seller"
+    admin= "Admin"
 class Users(Base):
     __tablename__ = "users"
 
@@ -15,5 +16,6 @@ class Users(Base):
     surname = Column(String, nullable= False)
     email = Column(String, nullable= False,unique=True)
     password = Column(String, nullable= False)
+    role = Column(Enum(User_role))
     image_id = Column(Integer)
     

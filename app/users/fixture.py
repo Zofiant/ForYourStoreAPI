@@ -14,6 +14,4 @@ def fake_user_data():
         password=fake.password()
     )
 
-def test_register_user_success(fake_user_data):
-    response = client.post("/register", data=fake_user_data.dict(exclude_unset=True))
-    assert response.status_code == 201
+

@@ -1,16 +1,19 @@
-from sqlalchemy import JSON, Column, Integer, String, ForeignKey, Time, Enum
+from sqlalchemy import Column, Integer, String, ForeignKey, Time, Enum
 from app.database import Base
 
 import enum
 
 
 class Order_status(enum.Enum):
-    Placed = 1
-    Processing = 2
-    Shipped = 3
-    Delivered = 4 
-    Canceled = 5
+    Placed = "Placed"
+    Processing = "Processing"
+    Shipped = "Shipped"
+    Delivered = "Delivered"
+    Canceled = "Canceled"
     
+class Order_delivery(enum.Enum):
+    Courier = "Courier"
+    Self_pickup = "Self_pickup"
 
 class Orders(Base):
     __tablename__ = "orders"
@@ -19,5 +22,7 @@ class Orders(Base):
     user_id = Column(ForeignKey("users.user_id"))
     made_in = Column(Time,nullable=False)
     status = Column(Enum(Order_status))
-    total_price = Column(Integer)
+    order_delivery = Column(Enum(Order_delivery))
+    address = Column(String)
+
 

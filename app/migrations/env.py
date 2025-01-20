@@ -2,6 +2,7 @@ from logging.config import fileConfig
 import sys
 from os.path import abspath,dirname
 
+import alembic_postgresql_enum
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 

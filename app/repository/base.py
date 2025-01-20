@@ -6,9 +6,9 @@ class BaseRepository:
     model = None
 
     @classmethod
-    async def find_by_id(cls, model_id: int):
+    async def find_by_id(cls, user_id: int):
         async with async_session_maker() as session:
-            query = select(cls.model).filter_by(id = model_id)
+            query = select(cls.model).filter_by(user_id = user_id)
             result = await session.execute(query)
             return result.scalar_one_or_none()
         
@@ -33,37 +33,13 @@ class BaseRepository:
             await session.execute(query)
             await session.commit()
 
+    @classmethod
+    async def delete(cls, **filter_by):
+        async with async_session_maker() as session:
+            query = delete(cls.model).filter_by(**filter_by)
+            await session.execute(query)
+            await session.commit()
 
-
-# Might NOT WORK
-    # @classmethod
-    # async def delete(cls, id: int):
-    #     async with async_session_maker() as session:
-    #         query = delete(cls.model).where(cls.model.id == id)
-    #         await session.execute(query)
-    #         await session.commit()
-    # @classmethod
-    # async def update(cls, id: int, **data):
-    #     async with async_session_maker() as session:
-    #         query = (
-    #             update(cls.model)
-    #             .where(cls.model.id == id)
-    #             .values(**data)
-    #         )
-    #         result = await session.execute(query)
-    #         await session.commit()
-    #         return result.rowcount
-    # @classmethod
-    # async def partial_update(cls, id: int, **data):
-    #     async with async_session_maker() as session:
-    #         query = (
-    #             update(cls.model)
-    #             .where(cls.model.id == id)
-    #             .values(**{k: v for k, v in data.items() if hasattr(cls.model, k)})
-    #         )
-    #         result = await session.execute(query)
-    #         await session.commit()
-    #         return result.rowcount
 
             
             
