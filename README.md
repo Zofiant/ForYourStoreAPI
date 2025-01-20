@@ -1,4 +1,4 @@
-Hello! This is course work backend dev! 
+Hello! This is course work for my backend subject! 
 to run it on your computer:
 1) You need to clone it
 2) Install all dependencies with requirements.txt: `pip install -r ./requirements.txt`
