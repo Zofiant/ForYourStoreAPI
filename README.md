@@ -30,7 +30,7 @@ This project provides a robust backend solution for handling orders, products, a
 - Containerization: Docker, Docker Compose
 - Authentication: JWT
 
-to run it on your computer:
+##To run it on your computer
 1) You need to clone it 'git clone https://github.com/Zofiant/ForYourStoreAPI/'
 2) Install all dependencies with requirements.txt: `pip install -r ./requirements.txt`
 3) Set up the environment variables: add .env with your database url and secret_key and algoritm!!
