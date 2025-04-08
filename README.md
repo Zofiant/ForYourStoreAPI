@@ -32,7 +32,6 @@ This project provides a robust backend solution for handling orders, products, a
 
 ## To run it on your computer
 1) You need to clone it 'git clone https://github.com/Zofiant/ForYourStoreAPI/'
-2) Install all dependencies with requirements.txt: `pip install -r ./requirements.txt`
-3) Set up the environment variables: add .env with your database url and secret_key and algoritm!!
-4) Run docker command `docker-compose -f docker-compose-local.yaml up -d`
-5) Access the API documentation at `http://localhost:8000/docs`
+2) Set up the environment variables: add .env with your database url and secret_key and algoritm
+3) Run docker command `docker-compose -f docker-compose-local.yaml up -d`
+4) Access the API documentation at `http://localhost:8000/docs`
