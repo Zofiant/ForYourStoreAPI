@@ -51,7 +51,7 @@ def login_and_get_token():
         response = requests.post(url, json=login_data, headers=headers)
         response.raise_for_status()  # Проверка на успешный запрос
         
-        # Выводим полный ответ, чтобы понять, что в нем
+     
         print("Full response text:", response.text)  # Это покажет весь ответ сервера
 
         try:
