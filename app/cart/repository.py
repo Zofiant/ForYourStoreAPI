@@ -122,3 +122,16 @@ class CartRepository(BaseRepository):
                 )
             await session.execute(query)
             await session.commit()
+
+    @staticmethod
+    async def clear_cart(user_id):
+        async with async_session_maker() as session:
+            cart_id = await CartRepository.get_user_cart_id(user_id)
+
+            query = delete(Cart_items).filter_by(cart_id = cart_id)
+
+            await session.execute(query)
+            await session.commit()
+
+
+

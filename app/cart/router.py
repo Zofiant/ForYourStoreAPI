@@ -44,4 +44,7 @@ async def create_order( delivery_info: SDelivery = Depends(validate_delivery), c
         address = delivery_info.address_courier
     else:
         address = delivery_info.address_pickup
-    return await CartRepository.create_order(address,delivery_info.order_delivery, current_user.user_id)
+
+    result =  await CartRepository.create_order(address,delivery_info.order_delivery, current_user.user_id)
+    await CartRepository.clear_cart(current_user.user_id)
+    return result
