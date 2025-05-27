@@ -14,7 +14,7 @@ from app.database import Base, DATABASE_URL
 from app.products.models import Products
 from app.cart.models import Carts
 from app.cart_item.models import Cart_items
-from app.users.models import Users
+from app.users.models import Users, UserRole
 from app.orders.models import Orders
 from app.orders_item.models import Order_items
 

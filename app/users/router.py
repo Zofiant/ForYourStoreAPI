@@ -5,7 +5,7 @@ from app.users.dependencies import get_current_admin_user, get_current_user
 from app.users.models import Users
 from app.users.schemas import SUserAuth, SUserRegister
 from app.users.repository import UserRepository
-from app.users.models import User_role
+from app.users.models import UserRole
 
 
 router = APIRouter(
@@ -19,7 +19,7 @@ async def register_user(user_data: SUserRegister):
     if existing_user:
         raise HTTPException(status_code=500)
     hashed_password = get_password_hash(user_data.password)
-    new_user_id =  await UserRepository.add(name = user_data.name,surname = user_data.surname, email=user_data.email, password=hashed_password, role = User_role.user)
+    new_user_id =  await UserRepository.add(name = user_data.name,surname = user_data.surname, email=user_data.email, password=hashed_password, role = UserRole.user)
     
     await UserRepository.add_new_cart(new_user_id)
     
